@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wishlist_items",
+  "info": {
+    "singularName": "wishlist-item",
+    "pluralName": "wishlist-items",
+    "displayName": "Wishlist Item"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "productHandle": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "imageSrc": {
+      "type": "string",
+      "required": true
+    },
+    "imageAlt": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

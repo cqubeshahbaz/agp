@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cart_items",
+  "info": {
+    "singularName": "cart-item",
+    "pluralName": "cart-items",
+    "displayName": "Cart Item"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "productHandle": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "quantity": {
+      "type": "integer",
+      "required": true,
+      "default": 1,
+      "min": 1
+    },
+    "imageSrc": {
+      "type": "string",
+      "required": true
+    },
+    "imageAlt": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
