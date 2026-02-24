@@ -8,6 +8,7 @@ import { Text } from '@/components/text'
 import { getCollectionByHandle } from '@/data'
 import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 import CategoryFilters1 from '../category-filters-1'
 import ProductSortDropdown from '../product-sort-dropdown'
 
@@ -119,14 +120,18 @@ export default async function Collection({
 
           <div className="flex justify-between gap-4">
             <Text>{filteredProducts.length} products</Text>
-            <ProductSortDropdown align="right" />
+            <Suspense fallback={null}>
+              <ProductSortDropdown align="right" />
+            </Suspense>
           </div>
 
           <Divider className="mt-5" />
 
           <div className="pt-10 pb-16 sm:pt-12 sm:pb-24">
             <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
-              <CategoryFilters1 />
+              <Suspense fallback={null}>
+                <CategoryFilters1 />
+              </Suspense>
 
               <section aria-labelledby="product-heading" className="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
                 <h2 id="product-heading" className="sr-only">

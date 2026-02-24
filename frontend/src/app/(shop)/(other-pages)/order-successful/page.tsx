@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import ClearCartOnce from './clear-cart-once'
 import OrderSuccessfulClient from './order-successful-client'
 
@@ -8,9 +9,9 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
+    <Suspense fallback={<div className="text-sm text-zinc-500">Loading...</div>}>
       <ClearCartOnce />
       <OrderSuccessfulClient />
-    </>
+    </Suspense>
   )
 }

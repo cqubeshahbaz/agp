@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import ForgotPasswordForm from './forgot-password-form'
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function ForgotPasswordPage() {
-  return <ForgotPasswordForm />
+  return (
+    <Suspense fallback={<div className="text-sm text-zinc-500">Loading...</div>}>
+      <ForgotPasswordForm />
+    </Suspense>
+  )
 }
