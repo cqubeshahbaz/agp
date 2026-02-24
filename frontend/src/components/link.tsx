@@ -5,8 +5,13 @@ import { useSingleClick } from '@/hooks/use-single-click'
 import NextLink, { type LinkProps } from 'next/link'
 import React, { forwardRef } from 'react'
 
+type AppLinkProps = LinkProps &
+  React.ComponentPropsWithoutRef<'a'> & {
+    'data-no-click-lock'?: string | boolean
+  }
+
 export const Link = forwardRef(function Link(
-  props: LinkProps & React.ComponentPropsWithoutRef<'a'>,
+  props: AppLinkProps,
   ref: React.ForwardedRef<HTMLAnchorElement>
 ) {
   const closeHeadless = Headless.useClose()
