@@ -10,8 +10,13 @@ export const metadata = {
   description: 'Search products',
 }
 
-export default async function SearchPage({ searchParams }: { searchParams?: { q?: string } }) {
-  const query = (searchParams?.q ?? '').trim().toLowerCase()
+export default async function SearchPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ q?: string }>
+}) {
+  const queryParams = (await searchParams) || {}
+  const query = (queryParams.q ?? '').trim().toLowerCase()
   const products = await getProducts()
   const results = query
     ? products.filter((product) => {
