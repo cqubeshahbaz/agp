@@ -78,10 +78,13 @@ function mapRow(row: StrapiRow): CartItem {
   }
 }
 
-function extractRows(payload: any): StrapiRow[] {
+type StrapiListEntry = StrapiRow & { attributes?: StrapiRow; id?: number; documentId?: string }
+type StrapiListPayload = { data?: StrapiListEntry[] } | StrapiRow[] | null | undefined
+
+function extractRows(payload: StrapiListPayload): StrapiRow[] {
   if (!payload) return []
-  if (Array.isArray(payload.data)) {
-    return payload.data.map((entry) => {
+  if (!Array.isArray(payload) && Array.isArray(payload.data)) {
+    return payload.data.map((entry: StrapiListEntry) => {
       const attrs = entry.attributes ? entry.attributes : entry
       return { ...attrs, id: entry.id ?? attrs.id, documentId: entry.documentId ?? attrs.documentId }
     })
