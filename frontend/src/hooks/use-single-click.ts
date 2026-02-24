@@ -1,7 +1,7 @@
 'use client'
 
-import { usePathname, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 type UseSingleClickOptions = {
   resetOnRouteChange?: boolean
@@ -11,8 +11,7 @@ type UseSingleClickOptions = {
 export function useSingleClick(options: UseSingleClickOptions = {}) {
   const { resetOnRouteChange = false, fallbackMs = 15000 } = options
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const routeKey = useMemo(() => `${pathname}?${searchParams.toString()}`, [pathname, searchParams])
+  const routeKey = pathname || ''
 
   const [pending, setPending] = useState(false)
   const pendingRef = useRef(false)
@@ -88,4 +87,3 @@ export function useSingleClick(options: UseSingleClickOptions = {}) {
 
   return { pending, runAsync, beginNavigation, unlock }
 }
-
